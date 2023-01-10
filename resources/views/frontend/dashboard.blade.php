@@ -11,7 +11,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ route('frontend.dashboard') }}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">BPG IT HELPDESK</span>
+        <span class="d-none d-lg-block"> BRRI-AGROMAT-LAB</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -263,16 +263,16 @@
               <div class="card info-card sales-card">
 
                 <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                 {{--  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li><a class="dropdown-item" href="#">Open Ticket - {{ $my_open_ticket }} </a></li>
-                    <li><a class="dropdown-item" href="#">In-Progress Ticket - {{ $my_inprogress_ticket }}</a></li>
-                    <li><a class="dropdown-item" href="#">Close Ticket - {{ $my_close_ticket }} </a></li>
-                  </ul>
+                    <li><a class="dropdown-item" href="#">Open Ticket  </a></li>
+                    <li><a class="dropdown-item" href="#">In-Progress Ticket</a></li>
+                    <li><a class="dropdown-item" href="#">Close Ticket </a></li>
+                  </ul> --}}
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">My All Tickets <span></span></h5>
+                  <h5 class="card-title">All Data <span></span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -280,7 +280,7 @@
                     </div>
                     <div class="ps-3">
                       <h6>{{ $my_all_ticket }}</h6>
-                      <span class="text-success small pt-1 fw-bold">View all ticket</span> <i class="bi bi-eye-fill"></i>
+                      {{-- <span class="text-success small pt-1 fw-bold">View all ticket</span> <i class="bi bi-eye-fill"></i> --}}
 
                     </div>
                   </div>
@@ -307,7 +307,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">My In Progress Tickets <span></span></h5>
+                  <h5 class="card-title">All Data Summary <span></span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -315,7 +315,7 @@
                     </div>
                     <div class="ps-3">
                       <h6>{{ $my_inprogress_ticket }}</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>
                   </div>
@@ -343,7 +343,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">My Resolved Tickets <span></span></h5>
+                  <h5 class="card-title"> Todays Data Summary <span></span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -368,7 +368,7 @@
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+           {{--        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
                       <h6>Filter</h6>
                     </li>
@@ -376,18 +376,18 @@
                     <li><a class="dropdown-item" href="#">Today</a></li>
                     <li><a class="dropdown-item" href="#">This Month</a></li>
                     <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
+                  </ul> --}}
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">My Recent Ticket Summary </h5>
+                  <h5 class="card-title">আজকের কৃষি পরামর্শ তালিকা </h5>
 
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
                         <th scope="col">#ID</th>
-                        <th scope="col">Token No</th>
-                        <th scope="col">Ticket Created</th>
+                        <th scope="col"> No</th>
+                        <th scope="col"> Created By</th>
                         <th scope="col">Subject</th>
                         <th scope="col">Priority</th>
                         <th scope="col">Status</th>
@@ -535,7 +535,7 @@
             </div>
 
             <div class="card-body">
-              <h5 class="card-title"> Assigned Ticket<span> | Today</span></h5>
+              <h5 class="card-title"> সমসাময়িক কৃষি পরামর্শ তালিকা </h5>
 
               <div class="activity">
 
@@ -592,78 +592,6 @@
             </div>
           </div>          
 
-          <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-            </div>
-
-            <div class="card-body">
-              <h5 class="card-title"> High Priority Tickets<span> </span></h5>
-
-              <div class="activity">
-
-                @foreach ($high_priority_tickets as $priority_tickets)
-
-                  <div class="activity-item d-flex">
-                    <div class="activite-label">{{ date('j, M'), $priority_tickets['created_at'] }} </div>
-                    @if ($priority_tickets['status'] == 1)
-                      <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>  
-                      @elseif ($priority_tickets['status'] == 2)
-                      <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>    
-                      @elseif ($priority_tickets['status'] == 3)
-                      <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                    @endif
-                    <div class="activity-content">
-                      <a href="#" class="fw-bold text-dark">{{ $priority_tickets['subject'] }}</a> 
-                    </div>
-                  </div>
-
-{{--                   <div class="activity-item d-flex">
-                    <div class="activite-label">56 min</div>
-                    <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                    <div class="activity-content">
-                      Voluptatem blanditiis blanditiis eveniet
-                    </div>
-                  </div>
-
-                  <div class="activity-item d-flex">
-                    <div class="activite-label">2 hrs</div>
-                    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                    <div class="activity-content">
-                      Voluptates corrupti molestias voluptatem
-                    </div>
-                  </div>
-
-                  <div class="activity-item d-flex">
-                    <div class="activite-label">1 day</div>
-                    <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                    <div class="activity-content">
-                      Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
-                    </div>
-                  </div>
-
-                  <div class="activity-item d-flex">
-                    <div class="activite-label">2 days</div>
-                    <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                    <div class="activity-content">
-                      Est sit eum reiciendis exercitationem
-                    </div>
-                  </div>
-
-                  <div class="activity-item d-flex">
-                    <div class="activite-label">4 weeks</div>
-                    <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                    <div class="activity-content">
-                      Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                    </div>
-                  </div> --}}
-
-                @endforeach
-
-              </div>
-
-            </div>
-          </div>
 
           <!-- End Recent Activity -->
 

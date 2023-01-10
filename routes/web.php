@@ -118,8 +118,8 @@ Route::middleware(['auth', 'profile_status'])->group(function () {
             Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('frontend.dashboard');
             Route::get('/profile', [PagesController::class, 'profile'])->name('frontend.profile');
             Route::get('/view-profile', [PagesController::class, 'viewProfile'])->name('frontend.view-profile');
-            Route::get('/new-ticket', [PagesController::class, 'newTicket'])->name('frontend.new-ticket');
-            Route::get('/all-ticket', [PagesController::class, 'allTicket'])->name('frontend.all-ticket');
+            Route::get('/new-advice', [PagesController::class, 'newTicket'])->name('frontend.new-ticket');
+            Route::get('/all-advice', [PagesController::class, 'allTicket'])->name('frontend.all-ticket');
             Route::get('/my-ticket', [PagesController::class, 'myTicket'])->name('frontend.my-ticket');
             Route::get('/assigned-ticket', [PagesController::class, 'assignedTicket'])->name('frontend.assigned-ticket');
             Route::get('/assign-ticket-to-user/{id}', [PagesController::class, 'assignedTicketToUser'])->name('frontend.assign-ticket-to-user');

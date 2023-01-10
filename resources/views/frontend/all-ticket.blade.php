@@ -11,7 +11,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ route('frontend.dashboard') }}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">BPG IT HELPDESK</span>
+        <span class="d-none d-lg-block">BRRI-AGROMAT-LAB</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -242,11 +242,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>All Ticket</h1>
+      <h1>All List</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">All Ticket</li>
+          <li class="breadcrumb-item active">All List</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -273,14 +273,14 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">All Ticket List </h5>
+                  <h5 class="card-title">All List </h5>
 
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
                         <th scope="col">#ID</th>
-                        <th scope="col">Token No</th>
-                        <th scope="col">Ticket Created</th>
+                        <th scope="col"> No</th>
+                        <th scope="col"> Created By</th>
                         <th scope="col">Subject</th>
                         <th scope="col">Priority</th>
                         <th scope="col">Status</th>

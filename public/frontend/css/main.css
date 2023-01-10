@@ -5976,9 +5976,9 @@ div[class*="auction"] .custom-button {
 }
 
 .account-wrapper .right-side {
-    background: -moz-linear-gradient(90deg, #e8e7f9 0%, #a09fa7 56%, #9a989d 100%);
+/*    background: -moz-linear-gradient(90deg, #e8e7f9 0%, #a09fa7 56%, #9a989d 100%);
     background: -webkit-linear-gradient(90deg, #e8e7f9 0%, #279b71 56%, #3db9a8 100%);
-    background: -ms-linear-gradient(90deg, #e8e7f9 0%, #a09fa7 56%, #9a989d 100%);
+    background: -ms-linear-gradient(90deg, #e8e7f9 0%, #a09fa7 56%, #9a989d 100%);*/
     justify-content: center;
     align-items: center;
     width: 350px;

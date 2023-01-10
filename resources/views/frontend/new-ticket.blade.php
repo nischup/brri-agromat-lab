@@ -11,7 +11,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ route('frontend.dashboard') }}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">BPG IT HELPDESK</span>
+        <span class="d-none d-lg-block">BRRI-AGROMAT-LAB</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -242,11 +242,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>New Ticket</h1>
+      <h1>নতুন কৃষি পরামর্শ </h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item">New Ticket</li>
+          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">হোম </a></li>
+          <li class="breadcrumb-item">নতুন কৃষি পরামর্শ</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -256,7 +256,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">New Ticket Form</h5>
+              <h5 class="card-title">বিশেষ  কৃষি পরামর্শ</h5>
 
               <!-- Multi Columns Form -->
            
