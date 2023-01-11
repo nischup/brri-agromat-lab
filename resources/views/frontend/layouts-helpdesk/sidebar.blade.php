@@ -6,21 +6,21 @@
       <li class="nav-item">
         <a class="nav-link " href="{{ route('frontend.dashboard') }}">
           <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
+          <span>ড্যাশবোর্ড</span>
         </a>
       </li>      
 
       <li class="nav-item">
         <a class="nav-link " href="{{ route('frontend.new-ticket') }}">
           <i class="bi bi-journal-text"></i>
-          <span>Create New </span>
+          <span>বিশেষ কৃষি পরামর্শ তৈরী </span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link " href="{{ route('frontend.all-ticket') }}">
           <i class="bi bi-journal-text"></i>
-          <span>All List</span>
+          <span>বুলেটিন সমূহ</span>
         </a>
       </li>
 
@@ -194,12 +194,33 @@
         </ul>
       </li>
  --}}
-      <li class="nav-heading">Pages</li>
+      <li class="nav-heading">পেজেস</li>
 
-      <li class="nav-item">
+{{--       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('frontend.profile') }}">
           <i class="bi bi-person"></i>
           <span>Profile</span>
+        </a>
+      </li>     --}}  
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-person"></i>
+          <span>ফিডব্যাক</span>
+        </a>
+      </li>      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-person"></i>
+          <span>ইমেইল গ্রুপ</span>
+        </a>
+      </li>      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-person"></i>
+          <span>ভয়েস এসএমএস গ্রুপ </span>
         </a>
       </li>
 
@@ -229,7 +250,7 @@
               @csrf
               <a class="nav-link collapsed" href="#" onclick="event.preventDefault();this.closest('form').submit();">
                   <i class="bi bi-box-arrow-right"></i>
-                  <span>Log Out</span>
+                  <span>লগ আউট </span>
               </a>
           </form>
       </li>

@@ -11,7 +11,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ route('frontend.dashboard') }}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">BRRI-AGROMAT-LAB</span>
+        <span class="d-none d-lg-block">ব্র্রি এগ্রোমেট ল্যাব</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -242,11 +242,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>All List</h1>
+      <h1>বুলেটিন সমূহ</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">All List</li>
+          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">হোম</a></li>
+          <li class="breadcrumb-item active">বুলেটিন সমূহ</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -273,7 +273,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">All List </h5>
+                  <h5 class="card-title">সমস্ত বুলেটিন  </h5>
 
                   <table class="table table-borderless datatable">
                     <thead>
@@ -296,7 +296,7 @@
                         <th scope="row">{{ $i++ }}</a></th>
                         <th scope="row"><a href="{{ route('frontend.assign-ticket-to-user', $ticketdata['ticket_id']) }}"> {{ sprintf("%'.06d\n", $ticketdata['ticket_id']) }} </a></th>
                         <td>{{ $ticketdata['username'] }}</td>
-                        <td><a href="{{ route('frontend.assign-ticket-to-user', $ticketdata['ticket_id']) }}" class="text-primary" title="{{$ticketdata['subject']}}"> {{ Str::limit($ticketdata['subject'], 30, '...') }}</a></td>
+                        <td><a href="{{ route('frontend.assign-ticket-to-user', $ticketdata['ticket_id']) }}" class="text-primary" title="{{$ticketdata['subject']}}"> {{ $ticketdata['subject'] }}</a></td>
                         <td>
                               @if ($ticketdata['priority'] == 1)
                                 <span class="badge bg-primary">High</span>

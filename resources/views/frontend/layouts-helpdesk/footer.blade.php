@@ -1,7 +1,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>BPG-Software-Team</span></strong>. All Rights Reserved
+      &copy; Copyright 2023<strong><span>BRRI</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
 

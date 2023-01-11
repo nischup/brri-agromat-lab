@@ -11,7 +11,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ route('frontend.dashboard') }}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block"> BRRI-AGROMAT-LAB</span>
+        <span class="d-none d-lg-block"> ব্র্রি এগ্রোমেট ল্যাব</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -242,11 +242,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
+      <h1>ড্যাশবোর্ড </h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">হোম</a></li>
+          <li class="breadcrumb-item active">ড্যাশবোর্ড </li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -272,14 +272,14 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">All Data <span></span></h5>
+                  <h5 class="card-title">বিরূপ আবহাওয়া সমূহ <span></span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-file-earmark-text"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>{{ $my_all_ticket }}</h6>
+                      <h6> ৭ </h6>
                       {{-- <span class="text-success small pt-1 fw-bold">View all ticket</span> <i class="bi bi-eye-fill"></i> --}}
 
                     </div>
@@ -307,14 +307,14 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">All Data Summary <span></span></h5>
+                  <h5 class="card-title"> অঞ্চল সমূহ <span></span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-file-earmark-text"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>{{ $my_inprogress_ticket }}</h6>
+                      <h6> ৬৪ </h6>
                       {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>
@@ -343,14 +343,14 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title"> Todays Data Summary <span></span></h5>
+                  <h5 class="card-title"> বিশেষ কৃষি পরামর্শ সংখ্যা  <span></span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-file-earmark-text"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>{{ $my_close_ticket }}</h6>
+                      <h6> ২ </h6>
                       {{-- <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span> --}}
 
                     </div>
@@ -380,57 +380,9 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">আজকের কৃষি পরামর্শ তালিকা </h5>
+                  <h5 class="card-title">ম্যাপ  </h5>
 
-                  <table class="table table-borderless datatable">
-                    <thead>
-                      <tr>
-                        <th scope="col">#ID</th>
-                        <th scope="col"> No</th>
-                        <th scope="col"> Created By</th>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Priority</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Created Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @php
-                        $i = 1;
-                      @endphp
-                      @foreach ($recent_tickets as $ticketdata)
-                      <tr>
-                        <th scope="row">{{ $i++ }}</a></th>
-                        <th scope="row"><a href="#"> {{ sprintf("%'.06d\n", $ticketdata['ticket_id']) }} </a></th>
-                        <td>{{ $ticketdata['username'] }}</td>
-                        <td><a href="#" class="text-primary" title="{{$ticketdata['subject']}}"> {{ Str::limit($ticketdata['subject'], 30, '...') }}</a></td>
-                        <td>
-                              @if ($ticketdata['priority'] == 1)
-                                <span class="badge bg-primary">High</span>
-                                @elseif($ticketdata['priority'] == 2)
-                                <span class="badge bg-danger">Low</span>
-                                @elseif($ticketdata['priority'] == 3)
-                                <span class="badge bg-success">Medium</span>
-                              @endif
-                        </td>
-                        <td>
-                          @if ($ticketdata['status'] == 1)
-                            <span class="badge bg-primary">Open</span>
-                            @elseif($ticketdata['status'] == 2)
-                            <span class="badge bg-success">Close</span>
-                            @elseif($ticketdata['status'] == 3)
-                            <span class="badge bg-info">In-Progress</span>
-                          @endif
-                        </td>
-                        <td>
-                          {{ date('j, M Y'), $ticketdata['created_at'] }} 
-                        </td>
-                      </tr>
-
-                      @endforeach
-
-                    </tbody>
-                  </table>
+                    <img src="{{ asset('images/forecast-map.png') }}">
 
                 </div>
 
@@ -521,21 +473,9 @@
           <!-- Recent Activity -->
 
           <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
 
             <div class="card-body">
-              <h5 class="card-title"> সমসাময়িক কৃষি পরামর্শ তালিকা </h5>
+              <h5 class="card-title"> সর্বশেষ বুলেটিন সমূহ  </h5>
 
               <div class="activity">
 
