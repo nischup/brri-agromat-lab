@@ -301,7 +301,7 @@
                         <td>{{ $all_advice_listData['district_name'] }}</td>
                         <td>{{ $all_advice_listData['sarok_potro_no'] }}</td>
                         <td>{{ $all_advice_listData['purbavaser_sarsongkhep'] }}</td>
-                        <th scope="row"><a href="">  </a></th>
+                        <th scope="row"><a href=""> {{ $all_advice_listData['username'] }} </a></th>
                         <td>
                           {{ date('j, M Y'), $all_advice_listData['created_at'] }} 
                         </td>

@@ -108,9 +108,10 @@ class PagesController extends Controller
 
     public function agroAdvicelIst()
     {
-        $all_advice_list = AgricultureAdvice::select('agriculture_advice.*', 'divisions.bn_name as division_name', 'districts.bn_name as district_name')
+        $all_advice_list = AgricultureAdvice::select('agriculture_advice.*', 'divisions.bn_name as division_name', 'districts.bn_name as district_name', 'users.name as username')
             ->join('divisions', 'divisions.id', '=', 'agriculture_advice.division_id')
             ->join('districts', 'districts.id', '=', 'agriculture_advice.district_id')
+            ->join('users', 'users.id', '=', 'agriculture_advice.created_by')
             // ->where('auctions.end_time', '>', Carbon::now())
             // ->where('auction_target_suppliers.supplier_id', '=', Auth::user()->id)
             ->orderBy('id', 'DESC')
