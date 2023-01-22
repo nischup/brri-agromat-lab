@@ -125,7 +125,7 @@ class PagesController extends Controller
             // $pdf = Pdf::loadView('pdf-advice-data', $data);
             $pdf = Pdf::loadView('frontend.pdf-advice-data');
             // return $pdf->download('data-test.pdf');
-            return $pdf->stream('data-test.pdf');
+            return $pdf->stream('brri-agro-advice.pdf');
     }
 
     public function newAuction()
