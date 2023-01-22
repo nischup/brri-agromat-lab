@@ -30,5 +30,7 @@
 
     @yield('styles')
     @stack('styles')
+    
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.css" rel="stylesheet">
 
 </head>

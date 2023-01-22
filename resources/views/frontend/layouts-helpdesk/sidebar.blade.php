@@ -11,14 +11,14 @@
       </li>      
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ route('frontend.new-ticket') }}">
+        <a class="nav-link " href="{{ route('frontend.new-advice') }}">
           <i class="bi bi-journal-text"></i>
           <span>বিশেষ কৃষি পরামর্শ তৈরী </span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ route('frontend.all-ticket') }}">
+        <a class="nav-link " href="{{ route('frontend.agro-advice-list') }}">
           <i class="bi bi-journal-text"></i>
           <span>বুলেটিন সমূহ</span>
         </a>

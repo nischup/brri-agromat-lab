@@ -14,6 +14,9 @@ use App\Models\Ticket;
 use App\Models\Status;
 use App\Models\Priority;
 use App\Models\Severity;
+use App\Models\Division;
+use App\Models\District;
+use App\Models\AgricultureAdvice;
 use App\Models\Unit;
 use App\Models\MadeIn;
 use App\Models\Favorite;
@@ -21,53 +24,15 @@ use App\Models\UserProfile;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class PagesController extends Controller
 {
+
     public function home()
     {
-        $products = AuctionProduct::with(['catalogue','auction','thumbnail', 'bids' => function ($q) {
-            $q->select('id', 'auction_product_id', 'price');
-        }])->join('auctions', 'auctions.id', '=', 'auction_products.auction_id')
-            ->withCount('bids')
-            ->where('auctions.end_time', '>', Carbon::now())
-            ->orderBy('id', 'DESC')
-            ->take(20)
-            ->get()->map(function ($product) {
-                $product['lowest_bid'] = $product->bids->min('price');
-                return $product;
-            });
-
-        $featured_products = AuctionProduct::with(['catalogue','auction','thumbnail', 'bids' => function ($q) {
-            $q->select('id', 'auction_product_id', 'price');
-        }])->join('auctions', 'auctions.id', '=', 'auction_products.auction_id')
-            ->withCount('bids')
-            ->where('auctions.end_time', '>', Carbon::now())
-            ->where('auctions.featured', 1)
-            ->orderBy('id', 'DESC')
-            ->take(20)
-            ->get()->map(function ($featured_products) {
-                $featured_products['lowest_bid'] = $featured_products->bids->min('price');
-                return $featured_products;
-            });
-
-        $categories = Category::with(['catalogues' => function($query) {
-            $query->with('products.auction', function ($qw) {
-                $qw->orderBy('id', 'DESC');
-            })->whereHas('products')
-                ->withCount('products')
-                ->with('products.thumbnail');
-        }])->withCount(['catalogues as catalogue_with_product_count' => function ($q) {
-                $q->whereHas('products');
-            }])
-            ->where('parent_id', 0)
-            ->get();
-
-        return view('frontend.home', [
-            'products' => $products,
-            'featured_products' => $featured_products,
-            'categories' => $categories
-        ]);
+        return view('frontend.home');
     }
 
     public function phoneVerify()
@@ -108,26 +73,6 @@ class PagesController extends Controller
         ]);
     }
 
-    public function assignedTicketToUser($id)
-    {
-        // $ticket = Ticket::with(['products.catalogue.images', 'unit'])->where('slug', $slug)->first();
-        $ticket = Ticket::where('id', $id)->first();
-        // dd($ticket);
-        if (!$ticket) {
-            abort(404);
-        }
-
-        $status = Status::get();
-        $priority = Priority::get();
-        $severity = Severity::get();
-
-        return view('frontend.ticket-assign-to-user',[
-            'status' => $status,
-            'priority' => $priority,
-            'severity' => $severity,
-        ]);
-    }
-
 
     public function profile()
     {
@@ -144,54 +89,43 @@ class PagesController extends Controller
             ->first();
         
         $categories = explode(',',  $profile->parent_category_id);
-        // $cat_arr = array();
-        // foreach($categories as $key=>$val)
-        // {
-        //     $vl = preg_replace('#[^\w()/.%\-&]#', "", $val);
-        //     $cat_arr[$vl] = $vl;
-        // }
-
         $neighbour = Neighbourhood::where('id', $profile->neighbourhood)->first();
         $cat = Category::whereIn('id', $categories)->get();
         return view('frontend.view-profile', compact('profile', 'cat','neighbour'));
     }
 
-    public function newTicket()
+    public function newAdvice()
     {
-        return view('frontend.new-ticket');
+        $district_list = Division::get();
+        $division_list = District::get();
+        return view('frontend.new-advice', [
+
+            'district_list' => $district_list,
+            'division_list' => $division_list,
+            
+        ]);
     }    
 
-    public function allTicket()
+    public function agroAdvicelIst()
     {
-        $all_tickets = Ticket::select('tickets.id as ticket_id', 'tickets.subject as subject', 'tickets.status as status','tickets.severity as severity', 'tickets.priority as priority', 'tickets.created_at', 'users.id as user_id', 'users.name as username')->join('users', 'users.id', '=', 'tickets.created_by')
+        $all_advice_list = AgricultureAdvice::select('agriculture_advice.*', 'divisions.bn_name as division_name', 'districts.bn_name as district_name')
+            ->join('divisions', 'divisions.id', '=', 'agriculture_advice.division_id')
+            ->join('districts', 'districts.id', '=', 'agriculture_advice.district_id')
             // ->where('auctions.end_time', '>', Carbon::now())
             // ->where('auction_target_suppliers.supplier_id', '=', Auth::user()->id)
-            ->orderBy('ticket_id', 'DESC')
+            ->orderBy('id', 'DESC')
             ->get()->toArray(); 
 
-        return view('frontend.all-ticket', ['all_tickets' => $all_tickets]);
+        return view('frontend.all-agroadvice-list', ['all_advice_list' => $all_advice_list]);
     }    
 
-    public function myTicket()
-    {
-        $my_tickets = Ticket::select('tickets.id as ticket_id', 'tickets.subject as subject', 'tickets.status as status','tickets.severity as severity', 'tickets.priority as priority', 'tickets.created_at', 'users.id as user_id', 'users.name as username')->join('users', 'users.id', '=', 'tickets.created_by')
-            ->where('tickets.created_by', '=', Auth::user()->id)
-            ->orderBy('ticket_id', 'DESC')
-            ->get()->toArray(); 
 
-        return view('frontend.my-ticket', ['my_tickets' => $my_tickets]);
-    }    
-
-    public function assignedTicket()
-    {
-        $assigned_tickets = Ticket::select('tickets.id as ticket_id', 'tickets.subject as subject', 'tickets.status as status','tickets.severity as severity', 'tickets.priority as priority', 'tickets.created_at',  'tickets.assign_to', 'users.id as user_id', 'users.name as username')->join('users', 'users.id', '=', 'tickets.created_by')
-            ->where('tickets.assign_to', '=', Auth::user()->id)
-            ->orderBy('ticket_id', 'DESC')
-            ->get()->toArray(); 
-
-        return view('frontend.assigned-ticket', ['assigned_tickets' => $assigned_tickets]);
+    public function pdfAdviceData(){
+            // $pdf = Pdf::loadView('pdf-advice-data', $data);
+            $pdf = Pdf::loadView('frontend.pdf-advice-data');
+            // return $pdf->download('data-test.pdf');
+            return $pdf->stream('data-test.pdf');
     }
-
 
     public function newAuction()
     {
@@ -203,78 +137,11 @@ class PagesController extends Controller
         return view('frontend.new-auction');
     }
 
-    public function newQuotation()
-    {
-        return view('frontend.new-quotation');
-    }
-
-    public function myBids()
-    {
-        $logUser = Auth::user()->id;
-        $auctionProduct = AuctionBidProduct::with('unit', 'product')->where('user_id', $logUser)->orderBy('id', 'desc')->get();
-            // dd($auctionProduct['product']);
-        return view('frontend.my-bid',[
-            'auctionProduct' => $auctionProduct,
-        ]);
-
-    }
-
-    public function wonBidList()
-    {
-        $won_products = AuctionProduct::with(['catalogue','auction','thumbnail', 'bids' => function ($q) {
-            $q->select('id', 'auction_product_id', 'price', 'auction_bid_products.quantity as bid_qty');
-        }])
-            ->withCount('bids')
-            ->where('winner_id', auth()->user()->id)
-            ->orderBy('id', 'DESC')
-            ->take(12)
-            ->get()->map(function ($product) {
-                $product['lowest_bid'] = $product->bids->min('price');
-                return $product;
-            });
-
-        return view('frontend.won-bid-list',[
-            'won_products' => $won_products,
-        ]);
-    }
-
     public function catalogue()
     {
         return view('frontend.catalogue');
     }
 
-    public function auctions(Request $request)
-    {
-        // dd($request);
-        $products = AuctionProduct::with(['auction', 'catalogue'])
-            ->whereHas('auction', function ($q) {
-                $q->where('service_type','!=',Auction::QUOTATION_SERVICE);
-            })
-            ->orderBy('id','desc')->paginate($request->perPage);
-
-        $categories = Category::where('parent_id', 0)->get();
-
-        return view('frontend.auctions', [
-            'products' => $products,
-            'categories' => $categories,
-        ]);
-    }
-
-    public function quotations(Request $request)
-    {
-        $products = AuctionProduct::with(['auction', 'catalogue'])
-            ->whereHas('auction', function ($q) {
-                $q->where('service_type',Auction::QUOTATION_SERVICE);
-            })
-            ->orderBy('id','desc')->paginate($request->perPage);
-
-        $categories = Category::where('parent_id', 0)->get();
-
-        return view('frontend.auctions', [
-            'products' => $products,
-            'categories' => $categories,
-        ]);
-    }
 
     public function pricingPlan(Request $request)
     {
@@ -282,119 +149,11 @@ class PagesController extends Controller
         return view('frontend.pricing-plan', ['subscription_plan' => $subscription_plan]);
     }
 
-    public function auctionsByCategory($category, Request $request)
-    {
-        $category = Category::where('slug', $category)->first();
-        $categories = Category::where('parent_id', 0)->get();
-
-        $catalogueIds = Catalogue::where('parent_category_id', $category->id)
-            ->orWhere('category_id', $category->id)->get()->pluck('id')->toArray();
-
-        $products = null;
-        if (count($catalogueIds)) {
-            $products = AuctionProduct::with(['auction', 'catalogue'])
-                ->whereIn('catalogue_id', $catalogueIds)
-                ->orderBy('id', 'desc')
-                ->paginate($request->perPage);
-        }
-
-        return view('frontend.auctions', [
-            'products' => $products,
-            'categories' => $categories,
-            'category' => $category,
-            'featuredAuctions' => null, //TODO:: add featured auctions based on requirement
-        ]);
-    }
-
     public function wallet()
     {
         return view('frontend.wallet');
     }
 
-
-    public function auction($slug)
-    {
-        $auction = Auction::with(['products.catalogue.images', 'unit'])->where('slug', $slug)->first();
-        if (!$auction) {
-            abort(404);
-        }
-
-        $brands = Brand::get();
-        $units = Unit::get();
-
-        return view('frontend.auction-details',[
-            'auction' => $auction,
-            'brands' => $brands,
-            'units' => $units,
-        ]);
-    }
-
-    public function auctionProduct($slug, $catalogueSlug, Request $request)
-    {
-        if (!$request->id) {
-            abort(404);
-        }
-
-        if (!profileStatusCompleted()) {
-            session()->flash('error', __('You must complete your profile before creating auctions'));
-            return redirect()->route('frontend.profile');
-        }
-
-        $auctionProduct = AuctionProduct::whereHas('auction', function ($query) use ($slug){
-            return $query->where('slug', $slug);
-        })->whereHas('catalogue', function ($query) use ($catalogueSlug){
-            return $query->where('slug', $catalogueSlug);
-        })->with(['catalogue.category.parent', 'images', 'ownBids', 'bids.bidder', 'made_by'])
-            ->findOrFail($request->id);
-
-        $images = $auctionProduct->images->unique('src');
-        $brands = Brand::get();
-        $units = Unit::get();
-        $made_in = MadeIn::get();
-
-        return view('frontend.auction-product-details', [
-            'product' => $auctionProduct,
-            'images' => $images,
-            'brands' => $brands,
-            'units' => $units,
-            'made_in' => $made_in,
-        ]);
-    }
-
-    public function auctionProductDetails(Request $request)
-    {
-        if (!$request->id) {
-            abort(404);
-        }
-
-        $auctionProduct = AuctionProduct::with(['catalogue.category.parent', 'images', 'ownBids', 'bids.bidder', 'made_by'])
-            ->findOrFail($request->id);
-        // dd($auctionProduct);
-        $images = $auctionProduct->images->unique('src');
-        $brands = Brand::get();
-        $units = Unit::get();
-        $made_in = MadeIn::get();
-
-        return view('frontend.auction-product-details', [
-            'product' => $auctionProduct,
-            'images' => $images,
-            'brands' => $brands,
-            'units' => $units,
-            'made_in' => $made_in,
-        ]);
-    }
-
-    public function auctionBidSuccess($slug, $catalogueSlug, Request $request)
-    {
-        $auction = Auction::where('slug', $slug)->first();
-
-        return view('frontend.auction-bid-success', [
-            'auction' => $auction,
-            'slug' => $slug,
-            'catalogueSlug' => $catalogueSlug,
-            'id' => $request->id,
-        ]);
-    }
 
     public function aboutUs()
     {
@@ -412,45 +171,7 @@ class PagesController extends Controller
         return view('frontend.faqs');
     }
 
-    public function myAuctions($status = null)
-    {
-        $data = [
-            'status' => $status ?? 'All',
-            'auctions' => $this->getMyAuctions($status)
-        ];
-        switch ($status) {
-            case 'active':
-                return view('frontend.my-auctions-active', $data);
-            case 'closed':
-                return view('frontend.my-auctions-close', $data);
-            case 'won':
-                return view('frontend.my-auctions-won', $data);
-            default:
-                return view('frontend.my-auctions', $data);
-        }
-    }
 
-    private function getMyAuctions($status)
-    {
-        if ($status == 'active') {
-            $auctions = Auction::where('user_id', auth()->user()->id)
-                ->where('end_time', '>', Carbon::now())
-                ->orderBy('id', 'desc');
-        } else if ($status == 'closed') {
-            $auctions = Auction::where('user_id', auth()->user()->id)
-                ->where('end_time', '<=', Carbon::now())->orderBy('id', 'desc');
-        }else if ($status == 'won') {
-            $auctions = Auction::where('user_id', auth()->user()->id)->orderBy('id', 'desc');
-        } 
-        // else if ($status == 'won') {
-        //     $auctions = Auction::whereHas('products', function ($q) {
-        //         $q->where('winner_id', auth()->user()->id)->orderBy('id', 'desc');
-        //     });
-        // } 
-        else {
-            $auctions = Auction::where('user_id', auth()->user()->id)->orderBy('id', 'desc');
-        }
 
-        return $auctions->paginate(20);
-    }
+
 }

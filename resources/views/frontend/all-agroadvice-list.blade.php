@@ -242,35 +242,89 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>বিশেষ  কৃষি পরামর্শ</h1>
+      <h1>বুলেটিন সমূহ</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">হোম </a></li>
-          <li class="breadcrumb-item">বিশেষ  কৃষি পরামর্শ</li>
+          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">হোম</a></li>
+          <li class="breadcrumb-item active">বুলেটিন সমূহ</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
-    <section class="section">
+
+    <section class="section dashboard">
       <div class="row">
+        <!-- Left side columns -->
         <div class="col-lg-12">
+          <div class="row">
+            <!-- Recent Sales -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"></h5>
-              <!-- Multi Columns Form -->
-              @livewire('new-ticket')
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">সমস্ত বুলেটিন  </h5>
+
+                  <table class="table table-borderless datatable">
+                    <thead>
+                      <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">বিশেষ কৃষি পরামর্শ</th>
+                        <th scope="col">বিভাগ</th>
+                        <th scope="col">জেলা</th>
+                        <th scope="col">স্মারক পত্র নং</th>
+                        <th scope="col">পূর্বাভাসের সার-সংক্ষেপঃ</th>
+                        <th scope="col"> Created By</th>
+                        <th scope="col">Created Date</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @php
+                        $i = 1;
+                      @endphp
+                      @foreach ($all_advice_list as $all_advice_listData)
+                      <tr>
+                        <th scope="row">{{ $i++ }}</a></th>
+                        <td>{{ $all_advice_listData['agriculture_advice'] }}</td>
+                        <td>{{ $all_advice_listData['division_name'] }}</td>
+                        <td>{{ $all_advice_listData['district_name'] }}</td>
+                        <td>{{ $all_advice_listData['sarok_potro_no'] }}</td>
+                        <td>{{ $all_advice_listData['purbavaser_sarsongkhep'] }}</td>
+                        <th scope="row"><a href="">  </a></th>
+                        <td>
+                          {{ date('j, M Y'), $all_advice_listData['created_at'] }} 
+                        </td>
+                        <td><a href="{{ route('frontend.pdf-advice-data') }}"> View PDF </a></td>
+                      </tr>
+
+                      @endforeach
+
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
 
       </div>
     </section>
 
-  </main><!-- End #main -->
+  </main>
+  <!-- End #main -->
   
-@endsection
-
-@section('scripts')
-    @livewireScripts
 @endsection

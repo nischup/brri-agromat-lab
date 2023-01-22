@@ -118,41 +118,9 @@ Route::middleware(['auth', 'profile_status'])->group(function () {
             Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('frontend.dashboard');
             Route::get('/profile', [PagesController::class, 'profile'])->name('frontend.profile');
             Route::get('/view-profile', [PagesController::class, 'viewProfile'])->name('frontend.view-profile');
-            Route::get('/new-advice', [PagesController::class, 'newTicket'])->name('frontend.new-ticket');
-            Route::get('/all-advice', [PagesController::class, 'allTicket'])->name('frontend.all-ticket');
-            Route::get('/my-ticket', [PagesController::class, 'myTicket'])->name('frontend.my-ticket');
-            Route::get('/assigned-ticket', [PagesController::class, 'assignedTicket'])->name('frontend.assigned-ticket');
-            Route::get('/assign-ticket-to-user/{id}', [PagesController::class, 'assignedTicketToUser'])->name('frontend.assign-ticket-to-user');
-
-
-
-            // Route::get('/my-auctions/{slug}/products', [AuctionController::class, 'myAuctionProducts'])->name('my-auction-products');
-            // Route::get('/my-auctions-won/{slug}/products', [AuctionController::class, 'myAuctionWonProducts'])->name('my-auction-won-products');
-            // Route::get('/my-auctions/{slug}/products/{id}/bids', [AuctionController::class, 'myAuctionProductBids'])->name('my-auction-product-bids');
-            // Route::get('/my-auctions-bids-winer/{slug}/products/{id}/bids', [AuctionController::class, 'myAuctionProductBidsWinner'])->name('my-auction-product-bids-winner');
-            // Route::get('/my-auctions/{slug}/products/{id}/bids/{bid_id}', [AuctionController::class, 'myAuctionProductBid'])->name('my-auction-product-bid');
-            // Route::get('/my-auctions/{status?}', [PagesController::class, 'myAuctions'])->name('frontend.my-auctions');
-            // Route::get('/my-auctions/{id}/edit', [AuctionController::class, 'myAuctionEdit'])->name('frontend.edit-auction');
-            // Route::post('/my-auctions/mark-winner', [AuctionController::class, 'setAuctionBidWinner'])->name('set-auction-bid-winner');
-            // Route::post('/my-auctions/mark-winner-status-update', [AuctionController::class, 'setAuctionBidStatusUpdate'])->name('set-auction-bid-status-update');
-            // Route::get('/new-auction', [PagesController::class, 'newAuction'])->name('frontend.newAuction');
-            // Route::get('/new-quotation', [PagesController::class, 'newQuotation'])->name('frontend.newQuotation');
-            // Route::get('/my-bid', [PagesController::class, 'myBids'])->name('frontend.myBids');
-            // Route::get('/won-bid', [PagesController::class, 'wonBidList'])->name('frontend.wonBids-list');
-            // Route::get('/catalogue', [PagesController::class, 'catalogue'])->name('frontend.catalogue');
-            // Route::get('/auctions', [PagesController::class, 'auctions'])->name('frontend.auctions');
-            // Route::get('/quotations', [PagesController::class, 'quotations'])->name('frontend.quotations');
-
-            // Route::get('/auctions/{id}', [PagesController::class, 'auction'])->name('frontend.auction');
-            // Route::get('/wallet', [PagesController::class, 'wallet'])->name('frontend.wallet');
-
-            // Route::get('/favorites', [FavoriteController::class, 'index'])->name('frontend.dashboard.favorites');
-            // Route::get('/favorites/{id}/store', [FavoriteController::class, 'store'])->name('frontend.favorites.store');
-            // Route::get('/favorites/{id}/delete', [FavoriteController::class, 'destroy'])->name('frontend.favorites.delete');
-
-            // Route::post('/payment/charge', [PaymentController::class, 'charge'])->name('payment.charge');
-            // Route::get('/payment/confirm', [PaymentController::class, 'confirm'])->name('payment.confirm');
-
+            Route::get('/new-advice', [PagesController::class, 'newAdvice'])->name('frontend.new-advice');
+            Route::get('/all-advice', [PagesController::class, 'agroAdvicelIst'])->name('frontend.agro-advice-list');
+            Route::get('/pdf-advice-data', [PagesController::class, 'pdfAdviceData'])->name('frontend.pdf-advice-data');
         }
     );
 });

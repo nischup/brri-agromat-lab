@@ -242,101 +242,45 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>বুলেটিন সমূহ</h1>
+      <h1>বিশেষ  কৃষি পরামর্শ</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">হোম</a></li>
-          <li class="breadcrumb-item active">বুলেটিন সমূহ</li>
+          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">হোম </a></li>
+          <li class="breadcrumb-item">বিশেষ  কৃষি পরামর্শ</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
-
-    <section class="section dashboard">
+    <section class="section">
       <div class="row">
-        <!-- Left side columns -->
         <div class="col-lg-12">
-          <div class="row">
-            <!-- Recent Sales -->
-            <div class="col-12">
-              <div class="card recent-sales overflow-auto">
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
 
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title">সমস্ত বুলেটিন  </h5>
-
-                  <table class="table table-borderless datatable">
-                    <thead>
-                      <tr>
-                        <th scope="col">#ID</th>
-                        <th scope="col"> No</th>
-                        <th scope="col"> Created By</th>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Priority</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Created Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @php
-                        $i = 1;
-                      @endphp
-                      @foreach ($all_tickets as $ticketdata)
-                      <tr>
-                        <th scope="row">{{ $i++ }}</a></th>
-                        <th scope="row"><a href="{{ route('frontend.assign-ticket-to-user', $ticketdata['ticket_id']) }}"> {{ sprintf("%'.06d\n", $ticketdata['ticket_id']) }} </a></th>
-                        <td>{{ $ticketdata['username'] }}</td>
-                        <td><a href="{{ route('frontend.assign-ticket-to-user', $ticketdata['ticket_id']) }}" class="text-primary" title="{{$ticketdata['subject']}}"> {{ $ticketdata['subject'] }}</a></td>
-                        <td>
-                              @if ($ticketdata['priority'] == 1)
-                                <span class="badge bg-primary">High</span>
-                                @elseif($ticketdata['priority'] == 2)
-                                <span class="badge bg-danger">Low</span>
-                                @elseif($ticketdata['priority'] == 3)
-                                <span class="badge bg-success">Medium</span>
-                              @endif
-                        </td>
-                        <td>
-                          @if ($ticketdata['status'] == 1)
-                            <span class="badge bg-primary">Open</span>
-                            @elseif($ticketdata['status'] == 2)
-                            <span class="badge bg-success">Close</span>
-                            @elseif($ticketdata['status'] == 3)
-                            <span class="badge bg-info">In-Progress</span>
-                          @endif
-                        </td>
-                        <td>
-                          {{ date('j, M Y'), $ticketdata['created_at'] }} 
-                        </td>
-                      </tr>
-
-                      @endforeach
-
-                    </tbody>
-                  </table>
-
-                </div>
-
-              </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <!-- Multi Columns Form -->
+              @livewire('agro-advice')
             </div>
-
           </div>
+
         </div>
 
       </div>
     </section>
 
-  </main>
-  <!-- End #main -->
+  </main><!-- End #main -->
   
 @endsection
+
+@section('scripts')
+    @livewireScripts
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+       $('.ckeditor').ckeditor();
+    });
+</script>
+
+@endsection
+
+
