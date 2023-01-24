@@ -6,21 +6,21 @@
       <li class="nav-item">
         <a class="nav-link " href="{{ route('frontend.dashboard') }}">
           <i class="bi bi-grid"></i>
-          <span>ড্যাশবোর্ড</span>
+          <span class="nikosh-font">ড্যাশবোর্ড</span>
         </a>
       </li>      
 
       <li class="nav-item">
         <a class="nav-link " href="{{ route('frontend.new-advice') }}">
           <i class="bi bi-journal-text"></i>
-          <span>বিশেষ কৃষি পরামর্শ তৈরী </span>
+          <span class="nikosh-font">বিশেষ কৃষি পরামর্শ তৈরী </span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link " href="{{ route('frontend.agro-advice-list') }}">
           <i class="bi bi-journal-text"></i>
-          <span>বুলেটিন সমূহ</span>
+          <span class="nikosh-font">বুলেটিন সমূহ</span>
         </a>
       </li>
 
@@ -206,21 +206,21 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#">
           <i class="bi bi-person"></i>
-          <span>ফিডব্যাক</span>
+          <span class="nikosh-font">ফিডব্যাক</span>
         </a>
       </li>      
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#">
           <i class="bi bi-person"></i>
-          <span>ইমেইল গ্রুপ</span>
+          <span class="nikosh-font">ইমেইল গ্রুপ</span>
         </a>
       </li>      
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#">
           <i class="bi bi-person"></i>
-          <span>ভয়েস এসএমএস গ্রুপ </span>
+          <span class="nikosh-font">ভয়েস এসএমএস গ্রুপ </span>
         </a>
       </li>
 

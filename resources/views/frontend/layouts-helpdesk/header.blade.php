@@ -33,4 +33,22 @@
     
   <link href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.css" rel="stylesheet">
 
+  <style>
+    @font-face{
+            font-family: "Kalpurush, Nikosh";
+            src: url('asset(/fonts/kalpurush.ttf)');
+            src: url('asset(/fonts/Nikosh.ttf)');
+
+        }
+      .kalpurush-font{
+        font-family: Kalpurush;
+        font-size: 20px;
+      }        
+      .nikosh-font{
+        font-family: Nikosh;
+        font-size: 20px;
+      }
+
+</style>
+
 </head>

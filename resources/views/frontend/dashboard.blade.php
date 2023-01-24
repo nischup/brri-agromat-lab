@@ -11,7 +11,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ route('frontend.dashboard') }}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block"> ব্র্রি এগ্রোমেট ল্যাব</span>
+        <span class="d-none d-lg-block nikosh-font"> ব্র্রি এগ্রোমেট ল্যাব</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -242,11 +242,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>ড্যাশবোর্ড </h1>
+      <h1 class="nikosh-font">ড্যাশবোর্ড </h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}">হোম</a></li>
-          <li class="breadcrumb-item active">ড্যাশবোর্ড </li>
+          <li class="breadcrumb-item"><a href="{{ route('frontend.dashboard') }}" class="nikosh-font">হোম</a></li>
+          <li class="breadcrumb-item active nikosh-font">ড্যাশবোর্ড </li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -272,7 +272,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">বিরূপ আবহাওয়া সমূহ <span></span></h5>
+                  <h5 class="card-title nikosh-font">বিরূপ আবহাওয়া সমূহ <span></span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -307,14 +307,14 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title"> অঞ্চল সমূহ <span></span></h5>
+                  <h5 class="card-title nikosh-font"> অঞ্চল সমূহ <span></span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-file-earmark-text"></i>
                     </div>
                     <div class="ps-3">
-                      <h6> ৬৪ </h6>
+                      <h6 class="nikosh-font"> ৬৪ </h6>
                       {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>
@@ -343,7 +343,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title"> বিশেষ কৃষি পরামর্শ সংখ্যা  <span></span></h5>
+                  <h5 class="card-title nikosh-font"> বিশেষ কৃষি পরামর্শ সংখ্যা  <span></span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -380,7 +380,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">ম্যাপ  </h5>
+                  <h5 class="card-title nikosh-font">ম্যাপ  </h5>
 
                     <img src="{{ asset('images/forecast-map.png') }}">
 
@@ -475,7 +475,7 @@
           <div class="card">
 
             <div class="card-body">
-              <h5 class="card-title"> সর্বশেষ বুলেটিন সমূহ  </h5>
+              <h5 class="card-title nikosh-font"> সর্বশেষ বুলেটিন সমূহ  </h5>
 
               <div class="activity">
 

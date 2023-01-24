@@ -122,7 +122,7 @@ class AgroAdvice extends Component
             throw $e;
         }
 
-        return redirect()->route('frontend.new-ticket');
+        return redirect()->route('frontend.new-advice');
     }
 
 

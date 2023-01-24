@@ -7,6 +7,23 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+
+<style>
+    @font-face{
+            font-family: "Kalpurush, Nikosh";
+            src: url('asset(/fonts/kalpurush.ttf)');
+            src: url('asset(/fonts/Nikosh.ttf)');
+
+        }
+      .kalpurush-font{
+        font-family: Kalpurush;
+      }        
+      .nikosh-font{
+        font-family: Nikosh;
+      }
+
+</style>
+
 <body>
 
     <section class="login-area" style="margin-top: 100px;">
@@ -19,8 +36,8 @@
                             <img src="{{ asset('images/bd-logo.png') }}" width="100" height="100">
                         </div>
                         <div class="col-md-8">
-                                     <h3 class="text-center"> গনপ্রজাতন্ত্রী বাংলাদেশ সরকার </h3>
-                                     <p class="text-center">কৃষি মন্ত্রণালয়<br> বাংলাদেশ ধান গবেষণা ইনিস্টিটিউট <br> এগ্রোমেট ল্যাব</p>
+                                     <h3 class="text-center nikosh-font"> গনপ্রজাতন্ত্রী বাংলাদেশ সরকার </h3>
+                                     <p class="text-center nikosh-font">কৃষি মন্ত্রণালয়<br> বাংলাদেশ ধান গবেষণা ইনিস্টিটিউট <br> এগ্রোমেট ল্যাব</p>
                         </div>
                         <div class="col-md-2">
                              <img src="{{ asset('images/brri-logo.jpg') }}" width="100" height="100">

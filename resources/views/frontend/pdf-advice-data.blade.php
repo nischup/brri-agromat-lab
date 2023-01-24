@@ -10,18 +10,26 @@
 
 <style>
 
-    body {
-        font-family: 'Kalpurush', sans-serif;
-    }
-
     table, td, th {
       border: 1px solid black;
     }
 
     table {
       border-collapse: collapse;
-/*      width: 100%;*/
     }
+
+    @font-face{
+            font-family: "Kalpurush, Nikosh";
+            src: url('asset(/fonts/kalpurush.ttf)');
+            src: url('asset(/fonts/Nikosh.ttf)');
+
+        }
+      .kalpurush-font{
+        font-family: Kalpurush;
+      }        
+      .nikosh-font{
+        font-family: Nikosh;
+      }
 
 </style>
 
@@ -38,8 +46,8 @@
                         alt="{{ public_path('images/brri-logo.jpg') }}" width="100" height="100" />
                 </div>
                 <div class="col-md-8" style="margin-top:-120px;" >
-                        <h3 class="text-center"> গনপ্রজাতন্ত্রী বাংলাদেশ সরকার </h3>
-                        <p class="text-center">কৃষি মন্ত্রণালয়<br> বাংলাদেশ ধান গবেষণা ইনিস্টিটিউট <br> এগ্রোমেট ল্যাব</p>
+                        <h3 class="text-center nikosh-font"> গনপ্রজাতন্ত্রী বাংলাদেশ সরকার </h3>
+                        <p class="text-center nikosh-font">কৃষি মন্ত্রণালয়<br> বাংলাদেশ ধান গবেষণা ইনিস্টিটিউট <br> এগ্রোমেট ল্যাব</p>
                         <p class="text-center"> <a href=""> https://iras.brri.gov.bd/ </a> </p>
                 </div>
                 <div class="col-md-2" ></div>
