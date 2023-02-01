@@ -24,7 +24,7 @@ class UserLogin extends Component
 
     public function mount()
     {
-        $this->login = 'brri-agromatlab@mail.com';
+        $this->login = 'brri-agrometlab@mail.com';
         $this->password = 'password';
     }
 

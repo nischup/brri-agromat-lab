@@ -30,7 +30,7 @@ class ACLDataSeeder extends Seeder
         $user->assignRole($adminRole);
 
         $customerRole = Role::create(['name' => User::CUSTOMER_ROLE_NAME]);
-        $user = User::whereEmail('customer@mail.com')->first();
+        $user = User::whereEmail('brri-agrometlab@mail.com')->first();
         $user->assignRole($customerRole);
 
         $supplierRole = Role::create(['name' => User::SUPPLIER_ROLE_NAME]);

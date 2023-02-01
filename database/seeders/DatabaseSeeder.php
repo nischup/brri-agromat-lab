@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
          ]);
 
          User::create([
-             'name' => 'Supplier',
-             'email' => 'supplier@mail.com',
+             'name' => 'Brri-Agromet-Lab',
+             'email' => 'brri-agrometlab@mail.com',
              'phone' => '123456785',
              'password' => bcrypt('password')
          ]);
