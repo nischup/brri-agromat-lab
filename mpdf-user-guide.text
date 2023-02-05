@@ -1,0 +1,75 @@
+Run this composer command in your laravel application:
+
+composer require carlos-meneses/laravel-mpdf
+
+⚠️ Problems with mPDF and Laravel 9: ⚠️
+After installing and testing laravel-mpdf in Laravel 9 it returns the following error:
+
+Declaration of Mpdf\Mpdf::setLogger(Psr\Log\LoggerInterface $logger) must be compatible with Psr\Log\LoggerAwareInterface::setLogger(Psr\Log\LoggerInterface $logger): void
+
+Solution:==========================
+This is because Laravel 9 uses version 3 of psr/log by default and mPDF only supports up to 2.0. To fix it, run the following steps (Video guide):
+
+Delete the composer.lock file or from composer.json file just remove  "psr/log": "^3.0" to  "psr/log": "^2.0", or add "psr/log": "^2.0"
+Install the latest version of mPDF. Run composer require mpdf/mpdf. or run the command: composer update
+
+Solution:========================== end
+
+To start using Laravel, add the Service Provider and the Facade to your config/app.php:
+
+'providers' => [
+    // ...
+    Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class
+]
+'aliases' => [
+    // ...
+    'PDF' => Mccarlosen\LaravelMpdf\Facades\LaravelMpdf::class
+]
+
+php artisan vendor:publish --tag=mpdf-config
+
+<?php
+
+return [
+    'mode'                     => 'bn',
+    'format'                   => 'A4',
+    'default_font_size'        => '12',
+    'default_font'             => 'nikosh',
+    'margin_left'              => 10,
+    'margin_right'             => 10,
+    'margin_top'               => 10,
+    'margin_bottom'            => 10,
+    'margin_header'            => 0,
+    'margin_footer'            => 0,
+    'orientation'              => 'P',
+    'title'                    => 'Laravel mPDF',
+    'subject'                  => '',
+    'author'                   => '',
+    'watermark'                => '',
+    'show_watermark'           => false,
+    'show_watermark_image'     => false,
+    'watermark_font'           => 'sans-serif',
+    'display_mode'             => 'fullpage',
+    'watermark_text_alpha'     => 0.1,
+    'watermark_image_path'     => '',
+    'watermark_image_alpha'    => 0.2,
+    'watermark_image_size'     => 'D',
+    'watermark_image_position' => 'P',
+    'custom_font_dir'          => '',
+    'custom_font_data'         => [],
+    'auto_language_detection'  => false,
+    'temp_dir'                 => storage_path('app'),
+    'pdfa'                     => false,
+    'pdfaauto'                 => false,
+    'use_active_forms'         => false,
+];
+
+update fontvariables.php for bangla font
+
+"nikosh" => [
+	'R' => "Nikosh.ttf",
+	'useOTL' => 0xFF,
+],
+
+
+https://github.com/mccarlosen/laravel-mpdf

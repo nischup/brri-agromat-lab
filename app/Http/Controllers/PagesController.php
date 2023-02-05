@@ -24,7 +24,7 @@ use App\Models\UserProfile;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Barryvdh\DomPDF\Facade\Pdf;
+use PDF;
 
 
 class PagesController extends Controller
@@ -122,10 +122,17 @@ class PagesController extends Controller
 
 
     public function pdfAdviceData(){
-            // $pdf = Pdf::loadView('pdf-advice-data', $data);
-            $pdf = Pdf::loadView('frontend.pdf-advice-data');
-            // return $pdf->download('data-test.pdf');
-            return $pdf->stream('brri-agro-advice.pdf');
+            // $pdf = Pdf::loadView('frontend.pdf-advice-data');
+            // return $pdf->stream('brri-agro-advice.pdf');
+
+        $one_step = "গনপ্রজাতন্ত্রী বাংলাদেশ সরকার";
+
+        $data = [
+            'one_step' => $one_step,
+        ];
+        $pdf = PDF::loadView('frontend.pdf-advice-data', compact('data'));
+
+        return $pdf->stream('document.pdf');
     }
 
     public function newAuction()
