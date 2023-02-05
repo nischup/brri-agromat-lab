@@ -43,34 +43,7 @@ class PagesController extends Controller
 
     public function dashboard()
     {
-        $my_all_ticket = Ticket::where('created_by', auth()->user()->id)->count();
-        $my_inprogress_ticket = Ticket::where('status', '3')->where('created_by', auth()->user()->id)->count();
-        $my_open_ticket = Ticket::where('status', '1')->where('created_by', auth()->user()->id)->count();
-        $my_close_ticket = Ticket::where('status', '2')->where('created_by', auth()->user()->id)->count();
-
-        $recent_tickets = Ticket::select('tickets.id as ticket_id', 'tickets.subject as subject', 'tickets.status as status','tickets.severity as severity', 'tickets.priority as priority', 'tickets.created_at', 'users.id as user_id', 'users.name as username')->join('users', 'users.id', '=', 'tickets.created_by')
-            // ->where('auctions.end_time', '>', Carbon::now())
-            ->where('tickets.created_by', '=', Auth::user()->id)
-            ->orderBy('ticket_id', 'DESC')
-            ->take(30)
-            ->get()->toArray();        
-
-            $high_priority_tickets = Ticket::select('tickets.id as ticket_id', 'tickets.subject as subject', 'tickets.status as status','tickets.priority as priority', 'tickets.severity as severity','tickets.created_at', 'users.id as user_id', 'users.name as username')->join('users', 'users.id', '=', 'tickets.created_by')
-            ->where('tickets.priority', '1')
-            ->where('tickets.created_by', '=', Auth::user()->id)
-            ->orderBy('ticket_id', 'DESC')
-            ->take(30)
-            ->get()->toArray();
-
-
-        return view('frontend.dashboard', [
-            'my_all_ticket' => $my_all_ticket,
-            'my_inprogress_ticket' => $my_inprogress_ticket,
-            'my_close_ticket' => $my_close_ticket,
-            'my_open_ticket' => $my_open_ticket,
-            'recent_tickets' => $recent_tickets,
-            'high_priority_tickets' => $high_priority_tickets,
-        ]);
+        return view('frontend.dashboard');
     }
 
 
@@ -125,7 +98,7 @@ class PagesController extends Controller
             // $pdf = Pdf::loadView('frontend.pdf-advice-data');
             // return $pdf->stream('brri-agro-advice.pdf');
 
-        $one_step = "গনপ্রজাতন্ত্রী বাংলাদেশ সরকার";
+        $one_step = "বশিষে কৃষি পরার্মশঃ";
 
         $data = [
             'one_step' => $one_step,
